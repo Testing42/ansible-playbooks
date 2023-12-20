@@ -1,0 +1,14 @@
+---
+- name: Update Pi-hole Web Interface
+  hosts: piholevpnserver
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - name: Update Pi-hole
+      command: pihole -up
+      register: update_output
+
+    - name: Display Pi-hole Update Output
+      debug:
+        var: update_output.stdout_lines
